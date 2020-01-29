@@ -39,9 +39,6 @@ class llista_numerada {
         /* 8. Declaración del array sin ordenar */
         String[] llista = new String[Num_elements];
 
-        /* 9. Declaración de array para ordenar lista  */
-        String[] llista_ordenada = new String[Num_elements];
-
         /* creamos la regla con un do while para mostrar las opciones por pantalla */
         do {
             System.out.println("Què vols fer? ");
