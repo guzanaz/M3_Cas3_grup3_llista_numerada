@@ -1,4 +1,5 @@
 
+
 /*
 Este es el que en principio entregaremos 
  */
@@ -205,31 +206,63 @@ class llista_numerada {
                         System.out.println("\n");
                         break;
                     }
-
+                    int omitir = -1; //Inicializamos con un valor IMPOSIBLE en un array
                     System.out.println("Ingresa el apellido que deseas borrar");
                     x = sc.next();
-                    boolean encontrar = false;
+
                     for (int i = 0; i < comptador; i++) {
-                        //si el elemento insertado coincide con un elemento del array
                         if (x.equals(llista[i])) {
-                            for (int j = i; j < comptador - 1; j++) {
-                                llista[j] = llista[j + 1];
-                            }
-                            llista[comptador - 1] = null;
-                            comptador--;
-                            encontrar = true;
+                            omitir = i;
+                            System.out.println("eliminaremos " + llista[i]);//Esta linea de codigo, se ejecutara siempre
+                            //El codigo que este dentro de este if se ejecutara cuando la condicion sea true
+                            break;
                         }
                     }
-                    //Si no hi ha cap element amb aquest cognom
-                    if (encontrar == false) {
-                        System.out.println("\n");
-                        System.out.println("─────────────────────────────────────────");
-                        System.out.println("     El apellido no está en la lista     ");
-                        System.out.println("─────────────────────────────────────────");
-                        System.out.println("\n");
+
+                    if (omitir == -1) {
+                        System.out.println("el apellido no está en la lista ");
+                        break;
+                    } else {
+                        /*Guardamos los elementos distintos de x en un nuevo array*/
+                        int indiceModif = 0;
+                        String[] arrayModif = new String[comptador - 1];
+                        for (int i = 0; i < comptador; i++) {
+
+                            if (i != omitir) {
+                                arrayModif[indiceModif] = llista[i];
+                                indiceModif++;
+                            }
+
+                        }
+                        /*
+                        
+                       * Una vez el código ha llegado hasta aqui, tenemos una lista una llamada arrayModif 
+                         que tiene los resultados correctos de la lista
+                       * Ahora tenemos que copiar los contenidos de esta y ponerlo dentro de la lista 
+                         principal "llista" -lo podemos hacer con un for-
+                       * Pero antes deberiamos limpiar la "llista" para que no se generen errores
+                        
+                         */
+
+                        //vaciamos la llista
+                        llista = null;
+                        //reseteamos la llista
+                        llista = new String[Num_elements];
+
+                        /* también podríamos vacíar la llista así
+                            
+                        for(int var = 0;var<llista.length;var++){
+                            Llista[var] = null;
+                        }                       
+                         */
+                        //copiamos la lista modificada al array llista
+                        for (int var = 0; var < arrayModif.length; var++) {
+                            llista[var] = arrayModif[var];
+                        }
+                        comptador--;
                     }
-                    
-                    //imprimir lista
+
+                    //imprimimos la lista
                     System.out.println("\n");
                     System.out.println("───────────────────────");
                     System.out.println("         LISTA         ");
@@ -240,7 +273,6 @@ class llista_numerada {
                     System.out.println("\n");
 
                     break;
-
                 case 6://Anular
                     if (comptador == 0) {
                         //mensaje
@@ -377,25 +409,49 @@ class llista_numerada {
                             }
                         }
                     }
-                    System.out.println("Qué apellido quieres suprimir?");
+                    
+                    omitir = -1; //Inicializamos con un valor IMPOSIBLE en un array
+                    System.out.println("Ingresa el apellido que deseas borrar");
                     x = sc.next();
 
-                    for (int i = 0; i <= comptador; i++) {
+                    for (int i = 0; i < comptador; i++) {
                         if (x.equals(llista[i])) {
-                            int c;
-                            for (c = i; c < comptador; c++) {
-                                llista[c] = llista[c + 1];
-                            }
-                            llista_ordenada[c] = null;
-                            comptador--;
-
-                        }//si el apellido no está en la lista
-                        else {
-                            System.out.println("El apellido no está en la lista");
+                            omitir = i;
+                            System.out.println("eliminaremos " + llista[i]);//Esta linea de codigo, se ejecutara siempre
+                            //El codigo que este dentro de este if se ejecutara cuando la condicion sea true
                             break;
                         }
                     }
-                    //imprimir lista
+
+                    if (omitir == -1) {
+                        System.out.println("el apellido no está en la lista ");
+                        break;
+                    } else {
+                        /*Guardamos los elementos distintos de x en un nuevo array*/
+                        int indiceModif = 0;
+                        String[] arrayModif = new String[comptador - 1];
+                        for (int i = 0; i < comptador; i++) {
+
+                            if (i != omitir) {
+                                arrayModif[indiceModif] = llista[i];
+                                indiceModif++;
+                            }
+
+                        }
+
+                        //vaciamos la llista
+                        llista = null;
+                        //reseteamos la llista
+                        llista = new String[Num_elements];
+
+                        //copiamos la lista modificada al array llista
+                        for (int var = 0; var < arrayModif.length; var++) {
+                            llista[var] = arrayModif[var];
+                        }
+                        comptador--;
+                    }
+
+                    //imprimimos la lista
                     System.out.println("\n");
                     System.out.println("───────────────────────");
                     System.out.println("         LISTA         ");
