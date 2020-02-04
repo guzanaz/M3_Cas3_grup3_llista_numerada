@@ -1,15 +1,11 @@
 
 /*
-Progama java
-M3_Cas3_grup3_llista_numerada
-29 de Enero 2020
-*/
-
-/**
- * @author Daniela Gallardo
+Este es el que en principio entregaremos 
  */
-
-
+/**
+ *
+ * @author Daniela
+ */
 import java.util.*;
 
 class llista_numerada {
@@ -38,6 +34,9 @@ class llista_numerada {
 
         /* 8. Declaración del array sin ordenar */
         String[] llista = new String[Num_elements];
+
+        /* 9. Declaración de array para ordenar lista  */
+        String[] llista_ordenada = new String[Num_elements];
 
         /* creamos la regla con un do while para mostrar las opciones por pantalla */
         do {
@@ -158,8 +157,12 @@ class llista_numerada {
 
                 case 4://suprimir
                     if (comptador == 0) {
-                        //mensaje
-                        System.out.println("Lista vacía, nada que puedas borrar");
+                        //advertencia
+                        System.out.println("\n");
+                        System.out.println("──────────────────────────────────────────────");
+                        System.out.println("   Lista vacía ¡Nada que puedas suprimir!   ");
+                        System.out.println("──────────────────────────────────────────────");
+                        System.out.println("\n");
                     } //contador mayor que 0 y menor o igual al nro de elementos
                     else if (comptador > 0 || comptador <= Num_elements) {
                         System.out.println("Ingresa la posición que deseas borrar");
@@ -168,10 +171,10 @@ class llista_numerada {
                         //posición fuera de rango
                         if (p < 0 || p > comptador) {
                             System.out.println("Deber ser una posición válida");
-                            System.out.println("Ingresa la posición que deseas borrar");
-                            p = sc.nextInt();
+                            break;
+
                         } //posición en el rango
-                        else if (p > 0 || p <= comptador) {
+                        else {
                             int k;
                             for (k = p; k < comptador - 1; k++) {
                                 llista[k] = llista[k + 1];
@@ -194,28 +197,38 @@ class llista_numerada {
 
                 case 5://suprimir dada
                     if (comptador == 0) {
-                        //mensaje
-                        System.out.println("Lista vacía, nada que puedas borrar");
-                    } else {
-                        System.out.println("Qué apellido quieres suprimir?");
-                        x = sc.next();
-                        for (int i = 0; i < comptador; i++) {
-                            if (x.equals(llista[i])) {
-                                int c;
-                                for (c = i; c < comptador; c++) {
-                                    llista[c] = llista[c + 1];
-                                }
-                                ;
-                                comptador--;
-
-                            }//si el apellido no está en la lista
-                            else if (!x.equals(llista[i])) {
-                                System.out.println("El apellido no está en la lista");
-                                break;
-                            }
-                        }
+                        //advertencia
+                        System.out.println("\n");
+                        System.out.println("──────────────────────────────────────────────");
+                        System.out.println("   Lista vacía ¡Nada que puedas suprimir!   ");
+                        System.out.println("──────────────────────────────────────────────");
+                        System.out.println("\n");
+                        break;
                     }
 
+                    System.out.println("Ingresa el apellido que deseas borrar");
+                    x = sc.next();
+                    boolean encontrar = false;
+                    for (int i = 0; i < comptador; i++) {
+                        //si el elemento insertado coincide con un elemento del array
+                        if (x.equals(llista[i])) {
+                            for (int j = i; j < comptador - 1; j++) {
+                                llista[j] = llista[j + 1];
+                            }
+                            llista[comptador - 1] = null;
+                            comptador--;
+                            encontrar = true;
+                        }
+                    }
+                    //Si no hi ha cap element amb aquest cognom
+                    if (encontrar == false) {
+                        System.out.println("\n");
+                        System.out.println("─────────────────────────────────────────");
+                        System.out.println("     El apellido no está en la lista     ");
+                        System.out.println("─────────────────────────────────────────");
+                        System.out.println("\n");
+                    }
+                    
                     //imprimir lista
                     System.out.println("\n");
                     System.out.println("───────────────────────");
